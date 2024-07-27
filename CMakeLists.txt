@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Change your executable name to something creative!
-set(NAME tt05-example) # <-- Name your project/executable here!
+set(NAME tt05-tetris) # <-- Name your project/executable here!
 
 include(pico_sdk_import.cmake)
 
@@ -21,6 +21,11 @@ add_executable(${NAME}
     tt_setup.c
 )
 
+# Use flash CLKDIV of 4
+pico_clone_default_boot_stage2(my_boot2)
+target_compile_definitions(my_boot2 PRIVATE PICO_FLASH_SPI_CLKDIV=4)
+pico_set_boot_stage2(${NAME} my_boot2)
+
 #pico_generate_pio_header(${NAME} ${CMAKE_CURRENT_LIST_DIR}/hova.pio)
 
 # Don't forget to link the libraries you need!
@@ -28,6 +33,8 @@ target_link_libraries(${NAME}
     pico_stdlib
     hardware_gpio
     hardware_pio
+    hardware_pwm
+    hardware_dma
     pico_multicore
 )
 

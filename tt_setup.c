@@ -52,7 +52,7 @@ void tt_select_design(int idx)
 
     // Set reset and project inputs to RP2040 outputs
     gpio_set_dir_all_bits((1 << CLK) | (1 << HK_CSB) | (1 << SDI_nRST) |
-                          (0xF << IN0) | (0xF << IN4));
+                          0);//(0xF << IN0) | (0xF << IN4));
 
     // Leave design in reset
     gpio_put(SDI_nRST, 0);
