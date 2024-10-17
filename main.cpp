@@ -1,4 +1,5 @@
 #include <pico/stdlib.h>
+#include <hardware/clocks.h>
 #include <hardware/sync.h>
 #include <pico/multicore.h>
 
@@ -11,12 +12,12 @@
 #define DESIGN_NUM 1
 
 int main() {
-    set_sys_clock_khz(133000, true);
+    set_sys_clock_khz(150000, true);
 
     stdio_init_all();
 
     // Uncomment to pause until the USB is connected before continuing
-    //while (!stdio_usb_connected());
+    while (!stdio_usb_connected());
 
     sleep_ms(20);
     printf("Selecting Factory Test\n");
@@ -28,7 +29,7 @@ int main() {
 
     // Clock in reset and then take out of reset
     tt_clock_project_once();
-    gpio_put(SDI_nRST, 1);
+    gpio_put(nRST, 1);
 
     // Factory test counts if in0 is high
     gpio_put(IN0, 1);
@@ -36,5 +37,6 @@ int main() {
     while (1) {
         tt_clock_project_once();
         sleep_ms(100);
+        printf("%d\n", tt_get_output_byte());
     }
 }

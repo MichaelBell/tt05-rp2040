@@ -3,6 +3,9 @@ cmake_minimum_required(VERSION 3.12)
 # Change your executable name to something creative!
 set(NAME tt05-example) # <-- Name your project/executable here!
 
+set(PICO_PLATFORM rp2350)
+set(PICO_BOARD pimoroni_pga2350)
+
 include(pico_sdk_import.cmake)
 
 # Gooey boilerplate
