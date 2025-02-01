@@ -22,6 +22,7 @@ add_compile_options(-Wall -Werror)
 add_executable(${NAME}
     main.cpp # <-- Add source files here!
     tt_setup.c
+    hstx_clk.c
 )
 
 #pico_generate_pio_header(${NAME} ${CMAKE_CURRENT_LIST_DIR}/hova.pio)
@@ -31,6 +32,7 @@ target_link_libraries(${NAME}
     pico_stdlib
     hardware_gpio
     hardware_pio
+    hardware_dma
     pico_multicore
 )
 
