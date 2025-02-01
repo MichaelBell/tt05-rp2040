@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
 # Change your executable name to something creative!
-set(NAME tt05-example) # <-- Name your project/executable here!
+set(NAME tt-example) # <-- Name your project/executable here!
 
 include(pico_sdk_import.cmake)
 
